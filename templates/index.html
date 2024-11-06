@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Stock Recommendation</title>
+</head>
+<body>
+    <h1>Stock Recommendation System</h1>
+    <form action="/recommend" method="post">
+        <label for="risk_level">Select your risk appetite:</label>
+        <select name="risk_level" id="risk_level">
+            <option value="Low Risk">Low Risk</option>
+            <option value="Medium Risk">Medium Risk</option>
+            <option value="High Risk">High Risk</option>
+        </select>
+        <button type="submit">Get Recommendations</button>
+    </form>
+</body>
+</html>
