@@ -18,9 +18,9 @@ def recommend():
 
     category_data = data[data['Risk_Label'] == risk_level]
 
-    avg_vector = category_data[['daily_return', 'Volatility_14d', 'beta', 'BB_Upper', 'BB_Lower']].mean().values
+    avg_vector = category_data[['Volatility_14d', 'beta', 'BB_Upper', 'BB_Lower']].median().values
 
-    stock_features = data[['daily_return', 'Volatility_14d', 'beta', 'BB_Upper', 'BB_Lower']].values
+    stock_features = data[['Volatility_14d', 'beta', 'BB_Upper', 'BB_Lower']].values
 
     similarity_scores = cosine_similarity(stock_features, [avg_vector]).flatten()
 
@@ -34,7 +34,7 @@ def recommend():
         .agg({'similarity': 'mean'})
         .reset_index()
         .sort_values(by='similarity', ascending=False)
-        .head(10)  # Limit to top 10 recommendations, adjust as needed
+        .head(5)  # Limit to top 10 recommendations, adjust as needed
     )
 
     recommended_stocks = unique_stocks.merge(data, on='symbol').drop_duplicates(subset='symbol')
