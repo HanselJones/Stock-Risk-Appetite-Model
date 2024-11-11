@@ -13,50 +13,56 @@
 <body>
     <div class="container mt-4">
         <h2>Recommended Stocks for Risk Level: {{ risk_level }}</h2>
-        <ul class="list-group">
+        <div class="list-group">
             {% for stock in stocks %}
-            <li class="list-group-item stock-item" data-symbol="{{ stock['symbol'] }}"
+            <button class="list-group-item list-group-item-action stock-button" 
+                data-symbol="{{ stock['symbol'] }}"
                 data-volatility="{{ stock['Volatility_14d'] }}"
                 data-beta="{{ stock['beta'] }}"
                 data-daily-return="{{ stock['daily_return'] }}"
                 data-open="{{ stock['open'] }}"
                 data-adj-close="{{ stock['adj_close'] }}">
-                {{ stock['symbol'] }}
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-
-    <!-- Modal for Stock Performance Details -->
-    <div class="modal fade" id="stockModal" tabindex="-1" role="dialog" aria-labelledby="stockModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="stockModalLabel">Stock Performance Details</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p><strong>Symbol:</strong> <span id="modalSymbol">N/A</span></p>
-                    <p><strong>Volatility:</strong> <span id="modalVolatility">N/A</span></p>
-                    <p><strong>Beta:</strong> <span id="modalBeta">N/A</span></p>
-                    <p><strong>Daily Return:</strong> <span id="modalDailyReturn">N/A</span></p>
-                    <p><strong>Open:</strong> <span id="modalOpen">N/A</span></p>
-                    <p><strong>Adjusted Close:</strong> <span id="modalAdjClose">N/A</span></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
+                {{ stock['symbol'] }} ({{ stock['company_name'] }})
+            </button>
+            <div class="stock-details">
+                <p>
+                    <strong>Symbol:</strong> <span class="detail-symbol">N/A</span>
+                    <span class="detail-description"> - The stock's unique identifier.</span>
+                </p>
+                <p>
+                    <strong>Volatility:</strong> <span class="detail-volatility">N/A</span>
+                    <span class="detail-description"> - A measure of the stock's price fluctuations over 14 days.</span>
+                </p>
+                <p>
+                    <strong>Beta:</strong> <span class="detail-beta">N/A</span>
+                    <span class="detail-description"> - Indicates the stock's sensitivity to market movements (e.g., beta > 1: more volatile than the market).</span>
+                </p>
+                <p>
+                    <strong>Daily Return:</strong> <span class="detail-daily-return">N/A</span>
+                    <span class="detail-description"> - The average daily profit or loss percentage of the stock.</span>
+                </p>
+                <p>
+                    <strong>Open:</strong> <span class="detail-open">N/A</span>
+                    <span class="detail-description"> - The price at which the stock opened for trading today.</span>
+                </p>
+                <p>
+                    <strong>Adjusted Close:</strong> <span class="detail-adj-close">N/A</span>
+                    <span class="detail-description"> - The closing price adjusted for factors like dividends and splits.</span>
+                </p>
             </div>
+            {% endfor %}
         </div>
     </div>
 
     <script>
         $(document).ready(function() {
-            // Click event for stock items
-            $('.stock-item').on('click', function() {
-                // Get data attributes from the clicked item
+            $('.stock-button').on('click', function() {
+                // Toggle the stock details visibility
+                var details = $(this).next('.stock-details');
+                $('.stock-details').not(details).slideUp(); // Hide other details
+                details.slideToggle(); // toggle current details
+
+                // get data about the stock after user asks for recommendation
                 var symbol = $(this).data('symbol');
                 var volatility = $(this).data('volatility');
                 var beta = $(this).data('beta');
@@ -64,16 +70,13 @@
                 var open = $(this).data('open');
                 var adjClose = $(this).data('adj-close');
 
-                // Update modal content with the stock data
-                $('#modalSymbol').text(symbol);
-                $('#modalVolatility').text(volatility);
-                $('#modalBeta').text(beta);
-                $('#modalDailyReturn').text(dailyReturn);
-                $('#modalOpen').text(open);
-                $('#modalAdjClose').text(adjClose);
-
-                // Show the modal
-                $('#stockModal').modal('show');
+                // Update the details content with the stock data
+                details.find('.detail-symbol').text(symbol);
+                details.find('.detail-volatility').text(volatility);
+                details.find('.detail-beta').text(beta);
+                details.find('.detail-daily-return').text(dailyReturn);
+                details.find('.detail-open').text(open);
+                details.find('.detail-adj-close').text(adjClose);
             });
         });
     </script>
