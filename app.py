@@ -4,12 +4,12 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 app = Flask(__name__)
 
-# Load the clustered stock data (assumes a CSV output from the notebook)
-data = pd.read_csv('stock_flask.csv')  # Replace with actual file path
+# Load the clustered stock data
+data = pd.read_csv('stock_flask.csv') 
 
 @app.route('/')
 def index():
-    return render_template('index.html')  # HTML file for home page
+    return render_template('index.html') 
 
 @app.route('/recommend', methods=['POST'])
 def recommend():
@@ -34,7 +34,7 @@ def recommend():
         .agg({'similarity': 'mean'})
         .reset_index()
         .sort_values(by='similarity', ascending=False)
-        .head(5)  # Limit to top 10 recommendations, adjust as needed
+        .head(5)  # Limit to the top 5 recommendations
     )
 
     recommended_stocks = unique_stocks.merge(data, on='symbol').drop_duplicates(subset='symbol')
