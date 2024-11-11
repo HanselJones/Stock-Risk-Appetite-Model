@@ -1,6 +1,9 @@
 # Stock Investment Recommendation System
 
+![Stock market or forex trading graph in futuristic concept](https://github.com/user-attachments/assets/ccc3dc21-c08b-4cb6-ad89-d0dab2da386e)
+
 This repository contains a machine learning-based stock recommendation system developed to provide personalized stock suggestions based on a customer's risk appetite. The project uses historical data from Yahoo.finance, clusters stocks into risk categories, and presents recommendations for low, medium, and high-risk portfolios. This project is built using Python, Jupyter notebooks, and Flask for backend development.
+
 
 ## Table of Contents
 
@@ -48,6 +51,7 @@ The project processes Yahoo.finance stock data, calculating various features for
   - Lag Features: Extract features such as opening, high, low, and closing prices with 1 to 3-day lags for trend analysis.
  
 ## Data Visualization
+
 In this project we used tableau to perform visualizations apart from those found in the code(EDA part). Below is the link to our dashboard.
 'https://public.tableau.com/views/Book1_17313034867730/Sheet5?:language=en-US&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link'
 
