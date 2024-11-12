@@ -1,4 +1,4 @@
-/* Basic Reset */
+
 * {
   margin: 0;
   padding: 0;
@@ -18,7 +18,7 @@ h1 {
   max-width: 400px;
 }
 
-/* Additional Button Hover Effect */
+/* blue color when user hovers on stock */
 .btn-primary:hover {
   background-color: #2980b9 !important;
 }
@@ -34,4 +34,47 @@ h1 {
 .detail-description {
   font-size: 0.9em;
   color: #6c757d;
+}
+body {
+  background: linear-gradient(135deg, #f0f8ff, #e6f7ff);
+  color: #333;
+}
+
+/* Style the heading */
+h2 {
+  color: #005cbf;
+  text-shadow: 1px 1px #ccd;
+}
+
+/* button color */
+.stock-button {
+  background-color: #4da6ff;
+  color: #fff;
+  border: none;
+  margin-bottom: 5px;
+  transition: 0.3s;
+}
+.stock-button:hover {
+  background-color: #0066cc;
+  box-shadow: 0 4px 8px rgba(0, 102, 204, 0.2);
+}
+
+
+.card {
+  margin-top: 20px;
+}
+.card-header {
+  background-color: #b3e0ff;
+  color: #005cbf;
+  font-weight: bold;
+}
+.card-body {
+  background-color: #e6f7ff;
+  border: 1px solid #b3d1ff;
+}
+
+.modal-content {
+  background-color: #f0f8ff;
+  color: #333;
+  border: 1px solid #4da6ff;
 }
