@@ -7,30 +7,85 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <div class="container mt-4">
         <h2>Recommended Stocks for Risk Level: {{ risk_level }}</h2>
-        <ul class="list-group">
+        <div class="list-group">
             {% for stock in stocks %}
-            <li class="list-group-item" data-toggle="tooltip" data-html="true"
-                title="
-                    <strong>Symbol:</strong> {{ stock['symbol'] }}<br>
-                    <strong>Volatility:</strong> {{ stock['Volatility_14d'] }}<br>
-                    <strong>Beta:</strong> {{ stock['beta'] }}<br>
-                    <strong>Daily Return:</strong> {{ stock['daily_return'] }}<br>
-                    <strong>Open:</strong> {{ stock['open'] }}<br>
-                    <strong>Adjusted Close:</strong> {{ stock['adj_close'] }}
-                    ">
-                {{ stock['symbol'] }}
-            </li>
+            <button class="list-group-item list-group-item-action stock-button" 
+                data-symbol="{{ stock['symbol'] }}"
+                data-volatility="{{ stock['Volatility_14d'] }}"
+                data-beta="{{ stock['beta'] }}"
+                data-daily-return="{{ stock['daily_return'] }}"
+                data-open="{{ stock['open'] }}"
+                data-adj-close="{{ stock['adj_close'] }}">
+                {{ stock['symbol'] }} ({{ stock['company_name'] }})
+            </button>
             {% endfor %}
-        </ul>
+        </div>
+
+        <!-- Card for Definitions -->
+        <div class="card">
+            <div class="card-header">
+                Key Terms
+            </div>
+            <div class="card-body">
+                <p><strong>Volatility:</strong> Indicates the stock's price fluctuation over time. Higher volatility means more risk and potentially higher returns.</p>
+                <p><strong>Beta:</strong> Measures a stock's risk relative to the market. A beta above 1 indicates higher risk, while below 1 indicates lower risk.</p>
+                <p><strong>Daily Return:</strong> The percentage change in the stock's price compared to the previous day, showing the stock's short-term performance.</p>
+                <p><strong>Open:</strong> The stock's price at the beginning of the trading day.</p>
+                <p><strong>Adjusted Close:</strong> The stock's closing price after adjustments for dividends and splits, useful for tracking performance over time.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="stockModal" tabindex="-1" role="dialog" aria-labelledby="stockModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="stockModalLabel">Stock Performance Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Symbol:</strong> <span id="modalSymbol">N/A</span></p>
+                    <p><strong>Volatility:</strong> <span id="modalVolatility">N/A</span></p>
+                    <p><strong>Beta:</strong> <span id="modalBeta">N/A</span></p>
+                    <p><strong>Daily Return:</strong> <span id="modalDailyReturn">N/A</span></p>
+                    <p><strong>Open:</strong> <span id="modalOpen">N/A</span></p>
+                    <p><strong>Adjusted Close:</strong> <span id="modalAdjClose">N/A</span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-        $(document).ready(function(){
-            $('[data-toggle="tooltip"]').tooltip();  // Initialize tooltips
+        $(document).ready(function() {
+            $('.stock-button').on('click', function() {
+                // Get data attributes from the clicked item
+                var symbol = $(this).data('symbol');
+                var volatility = $(this).data('volatility');
+                var beta = $(this).data('beta');
+                var dailyReturn = $(this).data('daily-return');
+                var open = $(this).data('open');
+                var adjClose = $(this).data('adj-close');
+
+                $('#modalSymbol').text(symbol);
+                $('#modalVolatility').text(volatility);
+                $('#modalBeta').text(beta);
+                $('#modalDailyReturn').text(dailyReturn);
+                $('#modalOpen').text(open);
+                $('#modalAdjClose').text(adjClose);
+
+                // Show the modal
+                $('#stockModal').modal('show');
+            });
         });
     </script>
 </body>

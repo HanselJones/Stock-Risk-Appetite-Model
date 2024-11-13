@@ -1,18 +1,40 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stock Recommendation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+<div class="container mt-5">
     <h1>Stock Recommendation System</h1>
-    <form action="/recommend" method="post">
+    <form action="/recommend" method="post" class="mt-4">
         <label for="risk_level">Select your risk appetite:</label>
-        <select name="risk_level" id="risk_level">
-            <option value="Low Risk">Low Risk</option>
-            <option value="Medium Risk">Medium Risk</option>
-            <option value="High Risk">High Risk</option>
-        </select>
-        <button type="submit">Get Recommendations</button>
+        <div class="d-flex align-items-center">
+            <select name="risk_level" id="risk_level" class="form-select me-2">
+                <option value="Low Risk">Low Risk</option>
+                <option value="Medium Risk">Medium Risk</option>
+                <option value="High Risk">High Risk</option>
+            </select>
+            <button type="button" class="btn btn-info btn-lg shadow-sm rounded-circle ms-2" data-bs-toggle="tooltip" 
+            data-bs-placement="right" 
+            title="Low Risk: Safe stocks with steady returns.&#13;&#10;Medium Risk: Balanced returns with moderate risk.&#13;&#10;High Risk: High-return stocks with significant volatility.">
+            ?
+            </button>
+        
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Get Recommendations</button>
     </form>
+</div>
+
+<script>
+    // Initialize tooltips
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+</script>
 </body>
 </html>
