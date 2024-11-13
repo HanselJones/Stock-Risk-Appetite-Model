@@ -61,7 +61,7 @@ The model achieved a silhouette score of approximately 0.6 which indicates that 
 The silhouette score was the metric of choice in determining the model to be used. The silhouette score is a good indicator of the quality of clusters formed by measuring how similar points are within a cluster and how different it is to other clusters. The k-means clustering model achieved a silhouette score of around 0.6 which is good but there is room for improvement in determining the clusters.
 
 ## Deployment
-A web application was created using HTML, CSS, JavaScript and Flask that allows the user to select their risk appetite and obtain recommendations based on the risk level selected. The application can be accessed by running the app.py script and opening the link at http://127.0.0.1:5000.
+A web application was created using HTML, CSS, JavaScript and Flask that allows the user to select their risk appetite and obtain recommendations based on the risk level selected. The application can be accessed by running the app.py script and opening the link at http://127.0.0.1:5000. If it is not accessible the Images folder within the static folder contains screenshots of the application interface showing the recommended stocks based on risk level. 
 ## Conclusion
 From the project we can see it is possible to provide personalized stock recommendations to a user based on their risk appetite. The K-means model had a higher silhouette score of 0.6 which indicates a decent quality of clusters that could be improved in the future. A web application was created using HTML, CSS, JavaScript and Flask that allows the user to select their risk appetite and obtain recommendations based on the risk level selected.
 
