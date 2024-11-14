@@ -45,7 +45,8 @@ A correlation heatmap was plotted to see the correlation between the closing pri
 <img src="static/Images/heatmap.png">
 
 Further analysis was done on tableau using an interactive dashboard found here:
-https://public.tableau.com/views/Book1_17313034867730/Sheet5?:language=en-US&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link
+https://public.tableau.com/app/profile/hansel.jones/viz/presenation2/Dashboard1?publish=yes
+https://public.tableau.com/app/profile/hansel.jones/viz/stocks_17301837374410/Dashboard1?publish=yes
 
 ## Data Preparation
 A function was to remove outliers based on Z-scores. This technique identifies outliers by calculating the Z-score for each value in specified columns. If a Z-score is above the threshold(3), the value is considered an outlier and removed. The dataset did not contain duplicates. The data did not originally contain missing values. 
